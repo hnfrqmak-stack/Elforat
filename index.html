@@ -1,10 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <title>Bezier Curve Editor for DS4Windows</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الفرات لتقييم وتثمين العقارات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0B192C',
+                        accent: '#FF6B35',
+                        gold: '#D4AF37'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #0B192C; color: #F1F1F1; }
+        .page { display: none; }
+        .active { display: block; }
+    </style>
 </head>
-<body>
-  <script src="build.js"></script>
+<body class="min-h-screen flex flex-col">
+
+    <header class="sticky top-0 z-50 bg-primary/95 border-b border-slate-800 shadow-xl">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3 space-x-reverse cursor-pointer" onclick="switchPage('home')">
+                <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                   <i class="fa-solid fa-building-columns text-primary"></i>
+                </div>
+                <span class="text-xl font-extrabold text-white">الفرات</span>
+            </div>
+            <nav class="flex space-x-1 space-x-reverse">
+                <button onclick="switchPage('home')" class="px-2 py-2 text-xs md:text-sm font-bold text-white hover:text-accent">الرئيسية</button>
+                <button onclick="switchPage('info')" class="px-2 py-2 text-xs md:text-sm font-bold text-white hover:text-accent">القيادة</button>
+                <button onclick="switchPage('achievements')" class="px-2 py-2 text-xs md:text-sm font-bold text-white hover:text-accent">إنجازاتنا</button>
+                <button onclick="switchPage('comments')" class="px-2 py-2 text-xs md:text-sm font-bold text-white hover:text-accent">آراء</button>
+                <button onclick="switchPage('contact')" class="px-2 py-2 text-xs md:text-sm font-bold text-white hover:text-accent">تواصل</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <div id="page-home" class="page active">
+            <div class="text-center bg-slate-900 p-8 rounded-3xl border border-slate-800">
+                <h1 class="text-3xl font-black text-white mb-4">نقدم لكم أدق التقديرات العقارية المعتمدة</h1>
+                <p class="text-slate-400">نحن بوابتك لتقييم عقارك بأمان واحترافية</p>
+            </div>
+        </div>
+
+        <div id="page-info" class="page">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <h2 class="text-2xl font-bold text-white text-center mb-6">القيادة الحكيمة</h2>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                    <h3 class="text-xl font-bold text-white">أ. محمد محمد علي عيسوي</h3>
+                    <p class="text-accent">مؤسس ورئيس مجلس الإدارة</p>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                    <h3 class="text-xl font-bold text-white">م. فتحي عيسوي</h3>
+                    <p class="text-gold">الشريك الهندسي</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-achievements" class="page">
+            <div class="max-w-2xl mx-auto space-y-6">
+                <h2 class="text-2xl font-bold text-white text-center mb-6">لماذا تختار الفرات؟</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-slate-900 p-6 rounded-2xl border border-gold text-center">
+                        <i class="fa-solid fa-calendar-check text-gold text-3xl mb-3"></i>
+                        <h4 class="font-bold text-white">20+ سنة</h4>
+                        <h4 class="font-bold text-white">منذ 2007</h4>
+                        <p class="text-xs text-slate-400">خبرة في السوق العقاري</p>
+                    </div>
+                    <div class="bg-slate-900 p-6 rounded-2xl border border-accent text-center">
+                        <i class="fa-solid fa-bullseye text-accent text-3xl mb-3"></i>
+                        <h4 class="font-bold text-white">90% دقة</h4>
+                        <p class="text-xs text-slate-400">في التقدير والعمل</p>
+                    </div>
+                    <div class="bg-slate-900 p-6 rounded-2xl border border-blue-500 text-center">
+                        <i class="fa-solid fa-handshake text-blue-500 text-3xl mb-3"></i>
+                        <h4 class="font-bold text-white">3000+ عملية</h4>
+                        <p class="text-xs text-slate-400">ناجحة وموثقة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-comments" class="page">
+            <div class="max-w-xl mx-auto">
+                <h2 class="text-2xl font-bold text-white text-center mb-6">آراء العملاء</h2>
+                <a href="https://www.youtube.com/@MohamedEssawy1" target="_blank" class="block bg-red-600 text-white text-center p-4 rounded-xl mb-6 font-bold hover:bg-red-700 transition">
+                    <i class="fa-brands fa-youtube ml-2"></i> قناة "هنفرق معاك" على اليوتيوب
+                </a>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 mb-6">
+                    <input type="text" id="userName" placeholder="اسمك" class="w-full p-3 mb-2 bg-slate-950 rounded-lg text-white border border-slate-700">
+                    <textarea id="userComment" placeholder="رأيك..." class="w-full p-3 h-24 bg-slate-950 rounded-lg text-white border border-slate-700"></textarea>
+                    <button onclick="addComment()" class="w-full mt-3 py-3 bg-gold text-primary font-bold rounded-lg hover:bg-yellow-500">إرسال الرأي</button>
+                </div>
+                <div id="commentsList" class="space-y-3"></div>
+            </div>
+        </div>
+
+        <div id="page-contact" class="page">
+            <div class="max-w-md mx-auto bg-slate-900 p-8 rounded-2xl border border-slate-800">
+                <h2 class="text-2xl font-bold text-white text-center mb-8">تواصل معنا</h2>
+                <div class="space-y-6">
+                    <a href="tel:+200000000000" class="flex items-center space-x-4 space-x-reverse text-slate-300 hover:text-gold transition">
+                   <i class="fa-solid fa-phone text-2xl"></i>
+                        <span>01115316777</span>     
+                        <i class="fa-solid fa-phone text-2xl"></i>
+                        <span>0100336005</span>
+                    </a>
+                    <a href="https://wa.me/200000000000" target="_blank" class="flex items-center space-x-4 space-x-reverse text-slate-300 hover:text-green-500 transition">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span>مرسلتنا عبر الواتس اب</span>
+                    </a>
+                    <a href="mailto:info@alforat.com" class="flex items-center space-x-4 space-x-reverse text-slate-300 hover:text-blue-400 transition">
+                        <i class="fa-solid fa-envelope text-2xl"></i>
+                        <span>mrms.essawy@gmail.com</span>
+                    </a>
+                    <div class="flex items-center space-x-4 space-x-reverse text-slate-300">
+                        <i class="fa-solid fa-location-dot text-2xl"></i>
+                        <span>القاهرة، جمهورية مصر العربية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function switchPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + pageId).classList.add('active');
+        }
+
+        function addComment() {
+            const name = document.getElementById('userName').value;
+            const comment = document.getElementById('userComment').value;
+            if(!name || !comment) return alert("يرجى كتابة الاسم والتعليق!");
+            
+            const list = document.getElementById('commentsList');
+            const newComment = document.createElement('div');
+            newComment.className = "bg-slate-800 p-4 rounded-xl border border-slate-700";
+            newComment.innerHTML = `<p class="font-bold text-gold">${name}</p><p class="text-slate-300 text-sm">${comment}</p>`;
+            list.prepend(newComment);
+            
+            document.getElementById('userName').value = '';
+            document.getElementById('userComment').value = '';
+        }
+    </script>
 </body>
 </html>
